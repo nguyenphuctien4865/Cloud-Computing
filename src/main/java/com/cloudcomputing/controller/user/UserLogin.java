@@ -1,5 +1,7 @@
 package com.cloudcomputing.controller.user;
 
+import utils.ServletUtils;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -39,14 +41,13 @@ public class UserLogin extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("username");
 		String passWord = request.getParameter("password");
-		if (userName.equals("20110471") && passWord.equals("1")) {
-			response.sendRedirect(request.getContextPath() + "/views/user/UserHome.jsp");
+		if (userName.equals("20110573") && passWord.equals("1")) {
+			ServletUtils.redirect("/UserHome",request,response);
 		}
 		else {
 			boolean flag = true;
 			request.setAttribute( "flag", flag);
-			RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
-			rd.forward(request, response);
+			ServletUtils.forward("views/index.jsp",request,response);
 		}
 		
 

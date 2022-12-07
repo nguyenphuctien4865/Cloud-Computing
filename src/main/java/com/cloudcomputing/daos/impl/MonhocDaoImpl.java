@@ -2,6 +2,8 @@ package com.cloudcomputing.daos.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.MonhocDao;
@@ -45,7 +47,25 @@ public class MonhocDaoImpl implements MonhocDao{
 	@Override
 	public void delete(String maMH) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	@Override
+	public  List<MonhocModel> findAll() {
+		List<MonhocModel> monhocModels = new ArrayList<>();
+		try (Connection connection = DatabaseConnection.initializeDatabase()) {
+			String query = "SELECT * FROM monhoc  ";
+			var statement = connection.prepareStatement(query);
+			var result = statement.executeQuery();
+			while (result.next())
+				monhocModels.add(new MonhocModel(result.getString(1), result.getString(2), result.getString(3),
+						result.getInt(4), result.getInt(5)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return monhocModels;
+	}
+
 
 }
