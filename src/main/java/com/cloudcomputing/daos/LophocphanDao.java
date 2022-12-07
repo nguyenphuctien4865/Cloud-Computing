@@ -3,7 +3,7 @@ package com.cloudcomputing.daos;
 import com.cloudcomputing.models.LophocphanModel;
 
 public interface LophocphanDao {
-	void save(LophocphanModel lophocphanmodel);
+	void save(LophocphanModel lophocphanModel);
 	void update (LophocphanModel lophocphanModel);
 	void delete (int id);
 	LophocphanModel findByid (int id);

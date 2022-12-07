@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 
 public class KhoaModel {
-	private int khoa;
+	private int khoaID;
 	private String tenKhoa;
 	public KhoaModel(String tenKhoa) {
 		super();
