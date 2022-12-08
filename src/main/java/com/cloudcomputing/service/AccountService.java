@@ -1,0 +1,9 @@
+package com.cloudcomputing.service;
+
+import com.cloudcomputing.models.AccountModel;
+
+public interface AccountService {
+	void save (AccountModel accounModel);
+	void update (AccountModel accountModel);
+	void delete (int accountID);
+}
