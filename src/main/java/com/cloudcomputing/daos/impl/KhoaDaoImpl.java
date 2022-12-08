@@ -2,6 +2,7 @@ package com.cloudcomputing.daos.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.KhoaDao;
@@ -43,8 +44,21 @@ public class KhoaDaoImpl implements KhoaDao{
 
 	@Override
 	public KhoaModel findBykhoaID(int khoaID) {
-		// TODO Auto-generated method stub
-		return null;
+		KhoaModel khoaModel = new KhoaModel();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT khoaID, tenKhoa FROM khoa where khoaID = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1, khoaID);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				khoaModel.setKhoaID(result.getInt(1));
+				khoaModel.setTenKhoa(result.getString(2));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return khoaModel;
 	}
 	
 }

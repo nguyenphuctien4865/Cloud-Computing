@@ -2,10 +2,12 @@ package com.cloudcomputing.daos.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.GiangvienDao;
 import com.cloudcomputing.models.GiangvienModel;
+import com.mysql.cj.protocol.Resultset;
 
 public class GiangvienDaoImpl implements GiangvienDao{
 
@@ -50,8 +52,26 @@ public class GiangvienDaoImpl implements GiangvienDao{
 
 	@Override
 	public GiangvienModel findBymaGV(String maGV) {
-		// TODO Auto-generated method stub
-		return null;
+		GiangvienModel	giangvienModel = new GiangvienModel();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maGV, hoTen, ngaySinh, maKhoa, loaiGV FROM giangvien where maGV = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, maGV);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				giangvienModel.setMaGV(result.getString(1));
+				giangvienModel.setHoTen(result.getString(2));
+				giangvienModel.setNgaySinh(result.getDate(3));
+				giangvienModel.setMaKhoa(result.getInt(4));
+				giangvienModel.setLoaiGV(result.getString(5));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return giangvienModel; 
 	}
 
 }

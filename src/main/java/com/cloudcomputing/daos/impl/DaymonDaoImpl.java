@@ -24,5 +24,14 @@ public class DaymonDaoImpl implements DaymonDao {
 
 	@Override
 	public void update(DaymonModel daymonModel) {
+		try (Connection connection = DatabaseConnection.initializeDatabase()){
+			String query = "UPDATE daymon SET maGV = ? WHERE maMH = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, daymonModel.getMaGV());
+			statement.setString(2, daymonModel.getMaMH());
+			statement.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
