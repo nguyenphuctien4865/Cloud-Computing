@@ -36,8 +36,8 @@
 									<td>${c.loai}</td>
 									<td >${c.soTC}</td>
 									<td class="text-right">
-										<a class="btn btn-sm btn-outline-primary" href="#" role="button">
-											<i class="fa fa-pencil" aria-hidden="true"></i>
+										<%--<a class="btn btn-sm btn-outline-primary" href="#" role="button">
+											<i class="fa fa-pencil" aria-hidden="true"></i>--%>
 										</a>
 									</td>
 								</tr>

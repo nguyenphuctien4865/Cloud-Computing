@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "SessionInitFilter")
+@WebFilter(filterName = "SessionInitFilter",value = "/*")
 public class SessionInitFilter implements Filter {
   public void init(FilterConfig config) throws ServletException {
   }

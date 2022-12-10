@@ -33,10 +33,13 @@
 				<div class="box-header">
 					<h2>Log In</h2>
 				</div>
-				<c:if test="${flag }">
-					<span class="label warning">Vui lòng kiểm tra lại Username
-						hoặc Password</span>
-					<br />
+				<c:if test="${hasError }">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<strong>Login failed!</strong> ${errorMessage}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 				</c:if>
 				<label for="username">Username</label> <br /> <input type="text"
 					id="username" name="username"> <br /> <label

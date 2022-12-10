@@ -45,7 +45,7 @@
           <form id="frmLogout" method="post" action="${pageContext.request.contextPath}/Account/Logout"></form>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownR" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Hi, <b>${authUser.name}!</b>
+              Hi, <b>${authUser.username}!</b>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="${pageContext.request.contextPath}/Account/Profile">

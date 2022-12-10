@@ -6,4 +6,6 @@ public interface AccountDao {
 	void save (AccountModel accountModel);
 	void update (AccountModel accountModel);
 	void delete (int accountID);
+
+	 AccountModel findbyUsername(String username);
 }
