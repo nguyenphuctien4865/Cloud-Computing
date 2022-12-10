@@ -1,5 +1,7 @@
 package com.cloudcomputing.service.impl;
 
+import java.util.List;
+
 import com.cloudcomputing.daos.MonhocDao;
 import com.cloudcomputing.daos.impl.MonhocDaoImpl;
 import com.cloudcomputing.models.MonhocModel;
@@ -23,6 +25,12 @@ public class MonhocServiceImpl implements MonhocService{
 	public void delete(String maMH) {
 		// TODO Auto-generated method stub
 		dao.delete(maMH);
+	}
+
+	@Override
+	public List<MonhocModel> findAll() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
 	}
 
 }

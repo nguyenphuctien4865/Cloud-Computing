@@ -3,9 +3,12 @@ package com.cloudcomputing.daos.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.KhoaDao;
+import com.cloudcomputing.models.GiangvienModel;
 import com.cloudcomputing.models.KhoaModel;
 
 public class KhoaDaoImpl implements KhoaDao{
@@ -59,6 +62,23 @@ public class KhoaDaoImpl implements KhoaDao{
 			e.printStackTrace();
 		}
 		return khoaModel;
+	}
+
+	@Override
+	public List<KhoaModel> findAll() {
+		List <KhoaModel> khoa = new ArrayList<>();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT khoaID, tenKhoa FROM khoa";
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				khoa.add(new KhoaModel(rs.getInt(1), rs.getString(2)));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return khoa;
 	}
 	
 }

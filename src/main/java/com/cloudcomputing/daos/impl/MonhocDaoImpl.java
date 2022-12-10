@@ -2,9 +2,13 @@ package com.cloudcomputing.daos.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.MonhocDao;
+import com.cloudcomputing.models.GiangvienModel;
 import com.cloudcomputing.models.MonhocModel;
 
 public class MonhocDaoImpl implements MonhocDao{
@@ -46,6 +50,23 @@ public class MonhocDaoImpl implements MonhocDao{
 	public void delete(String maMH) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<MonhocModel> findAll() {
+		List <MonhocModel> monhoc = new ArrayList<>();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maMH, tenMH, loai, soTC, khoaID FROM monhoc";
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				monhoc.add(new MonhocModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return monhoc;
 	}
 
 }

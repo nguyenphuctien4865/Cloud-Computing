@@ -1,5 +1,7 @@
 package com.cloudcomputing.service.impl;
 
+import java.util.List;
+
 import com.cloudcomputing.daos.GiangvienDao;
 import com.cloudcomputing.daos.impl.GiangvienDaoImpl;
 import com.cloudcomputing.models.GiangvienModel;
@@ -27,6 +29,11 @@ public class GiangvienServiceImpl implements GiangvienService{
 	@Override
 	public GiangvienModel findBymaGV(String maGV) {
 		return dao.findBymaGV(maGV);
+	}
+
+	@Override
+	public List<GiangvienModel> findAll() {
+		return dao.findAll();
 	}
 
 }

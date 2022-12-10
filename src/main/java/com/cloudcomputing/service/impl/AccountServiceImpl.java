@@ -23,4 +23,9 @@ public class AccountServiceImpl implements AccountService{
 		dao.delete(accountID);
 	}
 
+	@Override
+	public AccountModel searchByUsername(String username) {
+		return dao.searchByUsername(username);
+	}
+
 }

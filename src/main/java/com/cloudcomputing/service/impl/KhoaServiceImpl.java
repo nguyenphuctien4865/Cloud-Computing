@@ -1,5 +1,7 @@
 package com.cloudcomputing.service.impl;
 
+import java.util.List;
+
 import com.cloudcomputing.daos.KhoaDao;
 import com.cloudcomputing.daos.impl.KhoaDaoImpl;
 import com.cloudcomputing.models.KhoaModel;
@@ -29,5 +31,10 @@ public class KhoaServiceImpl implements KhoaService {
 	@Override
 	public KhoaModel findBykhoaID(int khoaID) {
 		return dao.findBykhoaID(khoaID);
+	}
+
+	@Override
+	public List<KhoaModel> findAll() {
+		return dao.findAll();
 	}
 }

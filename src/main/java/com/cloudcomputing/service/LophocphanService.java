@@ -1,5 +1,7 @@
 package com.cloudcomputing.service;
 
+import java.util.List;
+
 import com.cloudcomputing.models.LophocphanModel;
 
 public interface LophocphanService {
@@ -9,4 +11,5 @@ public interface LophocphanService {
 	LophocphanModel findByid (int id);
 	LophocphanModel findBymaLop (String maLop);
 	LophocphanModel fidnBymaMH (String maMH);
+	List <LophocphanModel> findAll ();
 }

@@ -1,5 +1,5 @@
 package com.cloudcomputing.daos;
-
+import java.util.List;
 import com.cloudcomputing.models.LophocphanModel;
 
 public interface LophocphanDao {
@@ -9,4 +9,5 @@ public interface LophocphanDao {
 	LophocphanModel findByid (int id);
 	LophocphanModel findBymaLop (String maLop);
 	LophocphanModel fidnBymaMH (String maMH);
+	List <LophocphanModel> findAll ();
 }

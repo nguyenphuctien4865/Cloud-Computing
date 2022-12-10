@@ -14,6 +14,9 @@ public class DatabaseConnection {
 		}
 		return null;
 	}
+	
+	/* Check databaseConnection */
+	
 //	public static void main(String[] args) {
 //		try {
 //			new DatabaseConnection();

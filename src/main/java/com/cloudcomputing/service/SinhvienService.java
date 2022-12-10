@@ -1,5 +1,7 @@
 package com.cloudcomputing.service;
 
+import java.util.List;
+
 import com.cloudcomputing.models.SinhvienModel;
 
 public interface SinhvienService {
@@ -7,4 +9,5 @@ public interface SinhvienService {
 	void update (SinhvienModel sinhvienModel);
 	void delete (String maSV);
 	SinhvienModel findByMaSV (String maSV);
+	List <SinhvienModel> findAll ();
 }

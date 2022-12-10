@@ -28,15 +28,14 @@
 				<span id="logo">HCM <span>UTE</span></span>
 			</h1>
 		</div>
-		<form action="/cloudcomputing/UserLogin" method="post">
+		<form action="${pageContext.request.contextPath }/LoginController" method="post">
 			<div class="login-box animated fadeInUp">
 				<div class="box-header">
 					<h2>Log In</h2>
 				</div>
-				<c:if test="${flag }">
-					<span class="label warning">Vui lòng kiểm tra lại Username
-						hoặc Password</span>
-					<br />
+				<c:if test="${not empty sessionScope.error }">
+					<div class="alert alert-danger">${sessionScope.error }</div>
+					<c:remove var="error" scope="session" />
 				</c:if>
 				<label for="username">Username</label> <br /> <input type="text"
 					id="username" name="username"> <br /> <label

@@ -3,10 +3,13 @@ package com.cloudcomputing.daos.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.GiangvienDao;
 import com.cloudcomputing.models.GiangvienModel;
+import com.cloudcomputing.models.SinhvienModel;
 import com.mysql.cj.protocol.Resultset;
 
 public class GiangvienDaoImpl implements GiangvienDao{
@@ -72,6 +75,23 @@ public class GiangvienDaoImpl implements GiangvienDao{
 		
 		
 		return giangvienModel; 
+	}
+
+	@Override
+	public List<GiangvienModel> findAll() {
+		List <GiangvienModel> giangvien = new ArrayList<>();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maGV, hoTen, ngaySinh, maKhoa, loaiGV FROM giangvien";
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				giangvien.add(new GiangvienModel(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getInt(4), rs.getString(5)));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return giangvien;
 	}
 
 }
