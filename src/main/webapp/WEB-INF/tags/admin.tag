@@ -28,13 +28,17 @@
 					var="logoSPKT" /> <img src="${logoSPKT }" alt="site logo"
 				class="site_logo"> <span class="text-uppercase fw-bold ms-2">HCMUTE</span>
 			</a>
-
-			<div class="order-lg-2">
-				<button type="button" class="btn position-relative">
-					<i class="fa fa-user"></i>
-				</button>
-			</div>
-
+			<div class="dropdown order-lg-2">
+                    <button type="button" class="btn position-relative dropdown-toggle" id="dropdownbutton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownbutton">
+                        <a href="" class="dropdown-item">Tên người dùng</a>
+                        <a href="" class="dropdown-item">Thông Tin</a>
+                        <a href="${pageContext.request.contextPath }/logout" class="dropdown-item">Đăng xuất</a>
+                    </div>
+                </div>
 			<button class="navbar-toggler border-0" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navMenu">
 				<span class="navbar-toggler-icon"></span>
@@ -67,7 +71,7 @@
 	<!-- navbar end -->
 	<jsp:doBody></jsp:doBody>
 	<!-- footer -->
-	<footer class="bg-dark py-5 fixed-bottom">
+	<footer class="bg-dark py-5">
 		<div class="container">
 			<div class="row text-white g-4">
 				<div class="">

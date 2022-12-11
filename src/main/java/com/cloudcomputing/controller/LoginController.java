@@ -13,10 +13,7 @@ import com.cloudcomputing.models.AccountModel;
 import com.cloudcomputing.service.AccountService;
 import com.cloudcomputing.service.impl.AccountServiceImpl;
 
-/**
- * Servlet implementation class LoginController
- */
-@WebServlet("/LoginController")
+@WebServlet(urlPatterns = {"/login", "/LoginController"})
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +47,7 @@ public class LoginController extends HttpServlet {
 
 		} else {
 			session.setAttribute("error", "User is not found!");
-			response.sendRedirect(request.getContextPath() + "/LoginController");
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 
 	}

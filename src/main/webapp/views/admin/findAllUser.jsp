@@ -31,7 +31,7 @@
 										<td>${sinhvien.maKhoa }</td>
 										<td>${sinhvien.accountID }</td>
 										<td><a class="btn btn-primary"
-													href="">Edit
+													href="${pageContext.request.contextPath }/admin/user/edit?id=${sinhvien.maSV }">Edit
 														Info</a> <a
 													href=""
 													class="btn btn-danger">Delete</a></td>
