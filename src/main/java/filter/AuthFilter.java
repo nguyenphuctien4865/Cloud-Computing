@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthFilter")
+@WebFilter(filterName = "AuthFilter", value = "/UserHome")
 public class AuthFilter implements Filter {
   public void init(FilterConfig config) throws ServletException {
   }
@@ -37,7 +37,6 @@ public class AuthFilter implements Filter {
 
     // đọc thông tin user, xem field permission để check xem user có được phép vào view hay không?
     // ...
-
     chain.doFilter(req, res); // cho phép request tiếp tục thực hiện
   }
 }

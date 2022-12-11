@@ -1,11 +1,9 @@
-package com.cloudcomputing.controller.user;
+package com.cloudcomputing.controller;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.cloudcomputing.models.AccountModel;
 import com.cloudcomputing.services.AccountService;
+import com.cloudcomputing.services.impl.AccountServiceImpl;
 import utils.ServletUtils;
-
-import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Servlet implementation class UserHome
  */
-@WebServlet("/UserLogin")
+@WebServlet("/UserLogin/*")
 public class UserLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +42,22 @@ public class UserLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		login(request,response);
+		String path = request.getPathInfo();
+		if (path == null || path.equals("/")) {
+			path = "/Index";
+		}
+		switch (path) {
+			case "/Index":
+				ServletUtils.forward("/views/index.jsp", request, response);
+				break;
+			case "/Login":
+				login(request, response);
+				break;
+
+			default:
+				ServletUtils.forward("/views/404.jsp", request, response);
+				break;
+		}
 	}
 
 
@@ -52,8 +66,8 @@ public class UserLogin extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		AccountService user = new AccountService();
-		AccountModel us = user.findbyUsername(username);
+		AccountService user = new AccountServiceImpl();
+		AccountModel us = user.searchByUsername(username);
 
 		if (us != null) {
 			boolean result = (us.getPassword().equals(password) );
@@ -65,10 +79,11 @@ public class UserLogin extends HttpServlet {
 
 				String url = (String) session.getAttribute("retUrl");
 				if (url == null)
+					System.out.println(us.getType());
 					if(us.getType().equals("student"))
 						url = "/UserHome";
 					else
-						url = "/Admin";
+						url = "/admin/user";
 				ServletUtils.redirect(url, request, response);
 			} else {
 				request.setAttribute("hasError", true);
@@ -83,14 +98,5 @@ public class UserLogin extends HttpServlet {
 	}
 
 
-	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.setAttribute("auth", false);
-		session.setAttribute("authUser", new AccountModel());
 
-		String url = request.getHeader("referer");
-		if (url == null)
-			url = "/Home";
-		ServletUtils.redirect(url, request, response);
-	}
 }

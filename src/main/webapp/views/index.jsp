@@ -28,7 +28,7 @@
 				<span id="logo">HCM <span>UTE</span></span>
 			</h1>
 		</div>
-		<form action="/cloudcomputing/UserLogin" method="post">
+		<form action="/cloudcomputing/UserLogin/Login" method="post">
 			<div class="login-box animated fadeInUp">
 				<div class="box-header">
 					<h2>Log In</h2>

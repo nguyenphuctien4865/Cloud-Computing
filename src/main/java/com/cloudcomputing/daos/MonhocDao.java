@@ -8,5 +8,7 @@ public interface MonhocDao {
 	void save (MonhocModel monhocmodel);
 	void update (MonhocModel monhocmodel);
 	void delete (String maMH);
-	List<MonhocModel> findAll();
+	List <MonhocModel> findAll ();
+	List <MonhocModel> findbyCurrentUser ( int khoa);
+
 }

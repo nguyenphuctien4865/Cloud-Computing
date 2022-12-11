@@ -1,11 +1,14 @@
 package com.cloudcomputing.daos.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.SinhvienDao;
 import com.cloudcomputing.models.SinhvienModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SinhvienDaoImpl implements SinhvienDao{
 
@@ -51,8 +54,41 @@ public class SinhvienDaoImpl implements SinhvienDao{
 
 	@Override
 	public SinhvienModel findByMaSV(String maSV) {
-		// TODO Auto-generated method stub
-		return null;
+		SinhvienModel sinhvienModel = new SinhvienModel();
+		try (Connection conn =  DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maSV, hoTen, ngaySinh, maKhoa, accountID FROM sinhvien WHERE maSV = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, maSV);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				sinhvienModel.setMaSV(rs.getString(1));
+				sinhvienModel.setHoTen(rs.getString(2));
+				sinhvienModel.setNgaySinh(rs.getDate(3));
+				sinhvienModel.setMaKhoa(rs.getInt(4));
+				sinhvienModel.setAccountID(rs.getInt(5));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sinhvienModel;
+	}
+
+	@Override
+	public List<SinhvienModel> findAll() {
+		List <SinhvienModel> sinhvien = new ArrayList<>();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maSV, hoTen, ngaySinh, maKhoa, accountID FROM sinhvien";
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				sinhvien.add(new SinhvienModel(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getInt(4), rs.getInt(5)));
+				
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return sinhvien;
 	}
 
 }

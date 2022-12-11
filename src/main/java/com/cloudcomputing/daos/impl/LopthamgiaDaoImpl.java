@@ -1,11 +1,12 @@
 package com.cloudcomputing.daos.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.LopthamgiaDao;
 import com.cloudcomputing.models.LopthamgiaModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
 
 public class LopthamgiaDaoImpl implements LopthamgiaDao{
 
@@ -36,7 +37,7 @@ public class LopthamgiaDaoImpl implements LopthamgiaDao{
 	}
 
 	@Override
-	public LopthamgiaModel findBylopID(int lopID) {
+	public List<LopthamgiaModel> findBylopID(int lopID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

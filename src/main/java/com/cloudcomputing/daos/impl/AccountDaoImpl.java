@@ -1,14 +1,13 @@
 package com.cloudcomputing.daos.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.AccountDao;
 import com.cloudcomputing.models.AccountModel;
-import com.cloudcomputing.connection.DatabaseConnection;
-import com.cloudcomputing.models.MonhocModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
 
 public class AccountDaoImpl implements AccountDao {
 
@@ -48,26 +47,28 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public AccountModel findbyUsername(String username) {
-		AccountModel account = new AccountModel();
-		try (Connection connection = DatabaseConnection.initializeDatabase()) {
-			String query = "SELECT * FROM account WHERE username = ?";
-			var statement = connection.prepareStatement(query);
+	public AccountModel searchByUsername(String username) {
+		AccountModel accountModel = new AccountModel();
+		try (Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT accountID, username, password, type FROM account WHERE username = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, username);
-			var result = statement.executeQuery();
-			while (result.next()){
-				account.setAccountID(result.getInt(1));
-				account.setUsername(result.getString(2));
-				account.setPassword(result.getString(3));
-				account.setType(result.getString(4));
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				accountModel.setAccountID(rs.getInt(1));
+				accountModel.setUsername(rs.getString(2));
+				accountModel.setPassword(rs.getString(3));
+				accountModel.setType(rs.getString(4));
 			}
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
-		return account;
+		return accountModel;
 	}
 
+	@Override
+	public List<AccountModel> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
