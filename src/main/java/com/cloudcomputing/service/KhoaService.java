@@ -1,12 +1,10 @@
-package com.cloudcomputing.daos;
+package com.cloudcomputing.service;
 
 import java.util.List;
 
 import com.cloudcomputing.models.KhoaModel;
 
-import java.util.List;
-
-public interface KhoaDao {
+public interface KhoaService {
 	void save(KhoaModel khoaModel);
 	void update (KhoaModel khoaModel);
 	void delete (int khoaID);
