@@ -24,8 +24,10 @@
 		<div class="container order-lg-0">
 			<a
 				class="navbar-brand d-flex justify-content-between align-items-center"
-				href=""> <c:url value="/template/image/logo-spk.png"
-					var="logoSPKT" /> <img src="${logoSPKT }" alt="site logo"
+				href="">
+				<c:url value="/template/image/logo-spk.png"
+					var="logoSPKT" />
+				<img src="${logoSPKT }" alt="site logo"
 				class="site_logo"> <span class="text-uppercase fw-bold ms-2">HCMUTE</span>
 			</a>
 

@@ -2,10 +2,13 @@ package com.cloudcomputing.daos.impl;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.LopthamgiaDao;
+import com.cloudcomputing.models.LophocphanModel;
 import com.cloudcomputing.models.LopthamgiaModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LopthamgiaDaoImpl implements LopthamgiaDao{
@@ -41,5 +44,26 @@ public class LopthamgiaDaoImpl implements LopthamgiaDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<LopthamgiaModel> findBymaSV(String msSV) {
+		List<LopthamgiaModel> lopthamgia = new ArrayList<>();
+		try (Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT * FROM (lopthamgia WHERE msSV=?)";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, msSV);
+
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				lopthamgia.add(new LopthamgiaModel(rs.getString(1),rs.getInt(2),rs.getFloat(3)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lopthamgia;
+	}
+
+
+
 
 }

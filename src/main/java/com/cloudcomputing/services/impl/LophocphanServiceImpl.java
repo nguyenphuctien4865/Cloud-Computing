@@ -49,4 +49,9 @@ public class LophocphanServiceImpl implements LophocphanService{
 		return dao.findbyDate(date, mh);
 	}
 
+	@Override
+	public List<LophocphanModel> findbymsSV(String date, String msSV) {
+		return dao.findbymsSV(date, msSV);
+	}
+
 }

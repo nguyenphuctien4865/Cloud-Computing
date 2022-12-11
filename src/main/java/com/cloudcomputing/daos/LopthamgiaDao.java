@@ -9,4 +9,7 @@ public interface LopthamgiaDao {
 	void update (LopthamgiaModel lopthamgiaModel);
 	void delete (LopthamgiaModel lopthamgiaModel );
 	List<LopthamgiaModel> findBylopID (int lopID);
+	List<LopthamgiaModel> findBymaSV (String msSV);
+
+
 }

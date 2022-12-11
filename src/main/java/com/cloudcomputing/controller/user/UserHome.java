@@ -55,7 +55,6 @@ public class UserHome extends HttpServlet {
                 KhoaModel khoa = kh.findBykhoaID(sinhvien.getMaKhoa());
                 req.setAttribute("sv", sinhvien);
                 req.setAttribute("kh", khoa);
-
                 ServletUtils.forward("/views/user/UserProfile.jsp", req, resp);
                 break;
         }

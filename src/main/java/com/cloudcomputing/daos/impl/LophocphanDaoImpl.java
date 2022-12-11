@@ -186,6 +186,27 @@ public class LophocphanDaoImpl implements LophocphanDao {
 		}
 		return lophocphanModel;	}
 
+	@Override
+	public List<LophocphanModel> findbymsSV(String date, String msSV) {
+		List<LophocphanModel> lophocphanModel = new ArrayList<>();
+		try (Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM (lophocphan INNER JOIN lopthamgia ON lophocphan.id = lopthamgia=lopID) WHERE ((ngayBD < ?) AND (?<ADDDATE(ngayBD,105))  AND lopthamgia.msSV=? )";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, date);
+			statement.setString(2, date);
+			statement.setString(3, msSV);
 
+
+
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				lophocphanModel.add(new LophocphanModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9), rs.getInt(10),
+						rs.getString(11)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lophocphanModel;	}
 
 }

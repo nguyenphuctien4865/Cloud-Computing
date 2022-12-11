@@ -23,6 +23,8 @@ public class UserDK extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getPathInfo();
         HttpSession session = req.getSession();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate now = LocalDate.now();
         AccountModel us = (AccountModel) session.getAttribute("authUser");
         if (path == null || path.equals("/")) {
             path = "/Index";
@@ -30,24 +32,27 @@ public class UserDK extends HttpServlet {
         switch (path) {
                 case "/Index":
 
-
                     SinhvienService svs = new SinhvienServiceImpl();
                     SinhvienModel s = svs.findByMaSV(us.getUsername());
 
                     MonhocService mh = new MonhocServiceImpl();
                     List<MonhocModel> listMH = mh.findbyCurrentUser(s.getMaKhoa());
 
+                    LophocphanService ltged =new LophocphanServiceImpl();
+                    List<LophocphanModel> listTG = ltged.findbymsSV(now.toString(),us.getUsername());
+
+                    req.setAttribute("listthamgia",listTG);
                     req.setAttribute("listmonhoc", listMH);
                     System.out.println(listMH.size());
                     ServletUtils.forward("/views/user/UserDKMH.jsp", req, resp);
                     break;
 
                 case "/Detail":
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    LocalDate now = LocalDate.now();
+
                     var maMH = req.getParameter("maMH");
 
                     LophocphanService lhp =new LophocphanServiceImpl();
+
                     List<LophocphanModel> listLHP = lhp.findbyDate(now.toString(),maMH);
 
                     req.setAttribute("lophocphan", listLHP);
@@ -62,7 +67,7 @@ public class UserDK extends HttpServlet {
                     LopthamgiaService ltg =new LopthamgiaServiceImpl();
                     LopthamgiaModel newLtg = new LopthamgiaModel(us.getUsername(),lopID,0.0f);
                     ltg.save(newLtg);
-                    ServletUtils.redirect("/DKMH",req,resp);
+                    ServletUtils.redirect("/DKMH/",req,resp);
                     break;
             }
 

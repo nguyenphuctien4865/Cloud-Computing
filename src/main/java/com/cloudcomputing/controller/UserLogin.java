@@ -53,7 +53,6 @@ public class UserLogin extends HttpServlet {
 			case "/Login":
 				login(request, response);
 				break;
-
 			default:
 				ServletUtils.forward("/views/404.jsp", request, response);
 				break;
@@ -63,40 +62,38 @@ public class UserLogin extends HttpServlet {
 
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
 
-		AccountService user = new AccountServiceImpl();
-		AccountModel us = user.searchByUsername(username);
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
 
-		if (us != null) {
-			boolean result = (us.getPassword().equals(password) );
-			if (result) {
-				HttpSession session = request.getSession();
-				session.setAttribute("auth", true);
-				session.setAttribute("authUser", us);
-				// response.addCookie(new Cookie("ecWebAppAuthUser", user.getUsername()));
+			AccountService user = new AccountServiceImpl();
+			AccountModel us = user.searchByUsername(username);
 
-				String url = (String) session.getAttribute("retUrl");
-				if (url == null)
-					System.out.println(us.getType());
-					if(us.getType().equals("student"))
+			if (us != null && us.getAccountID()!=0) {
+				boolean result = (us.getPassword().equals(password));
+				if (result) {
+					HttpSession session = request.getSession();
+					session.setAttribute("auth", true);
+					session.setAttribute("authUser", us);
+					// response.addCookie(new Cookie("ecWebAppAuthUser", user.getUsername()));
+
+					String url = (String) session.getAttribute("retUrl");
+					if (url == null)
+						System.out.println(us.getType());
+					if (us.getType().equals("student"))
 						url = "/UserHome";
 					else
 						url = "/admin/user";
-				ServletUtils.redirect(url, request, response);
+					ServletUtils.redirect(url, request, response);
+				} else {
+					request.setAttribute("hasError", true);
+					request.setAttribute("errorMessage", "Invalid login.");
+					ServletUtils.forward("views/index.jsp", request, response);
+				}
 			} else {
 				request.setAttribute("hasError", true);
 				request.setAttribute("errorMessage", "Invalid login.");
 				ServletUtils.forward("views/index.jsp", request, response);
 			}
-		} else {
-			request.setAttribute("hasError", true);
-			request.setAttribute("errorMessage", "Invalid login.");
-			ServletUtils.forward("views/index.jsp", request, response);
-		}
 	}
-
-
-
 }

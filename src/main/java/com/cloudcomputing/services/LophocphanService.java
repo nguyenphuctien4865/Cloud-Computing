@@ -15,5 +15,8 @@ public interface LophocphanService {
 	List <LophocphanModel> findAll ();
 	List <LophocphanModel> findbyDate (String date, String mh);
 
+	List <LophocphanModel> findbymsSV (String date, String msSV);
+
+
 
 }
