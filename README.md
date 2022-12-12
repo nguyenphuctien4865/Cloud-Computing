@@ -1,3 +1,3 @@
 # Cloud-Computing
-Nguyen Phuc Tien - 20110573
-Tran Nhat Hao - 20110471
+Nguyễn Phúc Tiền - 20110573
+Trần Nhật Hào - 20110471
