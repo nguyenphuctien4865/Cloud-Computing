@@ -53,7 +53,7 @@
                                     <td >${c.thu}</td>
                                     <td >${c.tiet}</td>
                                     <td class="text-right">
-                                            <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/DKMH/Register?maLop=${c.id}" role="button">
+                                            <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/DKMH/Register?maLop=${c.id}&maMon=${c.maMH}" role="button">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>

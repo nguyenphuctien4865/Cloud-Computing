@@ -1,5 +1,6 @@
 package filter;
 
+import com.cloudcomputing.models.AccountModel;
 import utils.ServletUtils;
 
 import javax.servlet.*;
@@ -29,6 +30,9 @@ public class AuthFilter implements Filter {
 
     HttpSession session = request.getSession();
     boolean auth = (boolean) session.getAttribute("auth");
+    if (session.getAttribute("tkb") == null) {
+      session.setAttribute("tkb",new int[8][20] );
+    }
     if (!auth) {
       session.setAttribute("retUrl", request.getRequestURI());
       ServletUtils.redirect("/UserLogin", request, (HttpServletResponse) res);

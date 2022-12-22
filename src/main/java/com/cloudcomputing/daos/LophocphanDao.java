@@ -2,6 +2,7 @@ package com.cloudcomputing.daos;
 
 import com.cloudcomputing.models.LophocphanModel;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface LophocphanDao {
@@ -12,8 +13,8 @@ public interface LophocphanDao {
 	LophocphanModel findBymaLop (String maLop);
 	LophocphanModel fidnBymaMH (String maMH);
 	List <LophocphanModel> findAll ();
-	List <LophocphanModel> findbyDate (String date, String mh);
-	List <LophocphanModel> findbymsSV (String date,  String msSV);
+	List <LophocphanModel> findbyDate (LocalDate date, String mh);
+	List <LophocphanModel> findbymsSV (LocalDate date,  String msSV);
 
 
 }

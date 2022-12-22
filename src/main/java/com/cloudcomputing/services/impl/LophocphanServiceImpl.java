@@ -5,6 +5,7 @@ import com.cloudcomputing.daos.impl.LophocphanDaoImpl;
 import com.cloudcomputing.models.LophocphanModel;
 import com.cloudcomputing.services.LophocphanService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class LophocphanServiceImpl implements LophocphanService{
@@ -45,12 +46,12 @@ public class LophocphanServiceImpl implements LophocphanService{
 	}
 
 	@Override
-	public List<LophocphanModel> findbyDate(String date,String mh) {
+	public List<LophocphanModel> findbyDate(LocalDate date, String mh) {
 		return dao.findbyDate(date, mh);
 	}
 
 	@Override
-	public List<LophocphanModel> findbymsSV(String date, String msSV) {
+	public List<LophocphanModel> findbymsSV(LocalDate date, String msSV) {
 		return dao.findbymsSV(date, msSV);
 	}
 

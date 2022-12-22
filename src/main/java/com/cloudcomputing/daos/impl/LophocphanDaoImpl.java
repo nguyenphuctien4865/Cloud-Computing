@@ -6,11 +6,12 @@ import com.cloudcomputing.models.AccountModel;
 import com.cloudcomputing.models.LophocphanModel;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class LophocphanDaoImpl implements LophocphanDao {
@@ -165,14 +166,13 @@ public class LophocphanDaoImpl implements LophocphanDao {
 	}
 
 	@Override
-	public List<LophocphanModel> findbyDate(String date, String mh) {
+	public List<LophocphanModel> findbyDate(LocalDate date, String mh) {
 		List<LophocphanModel> lophocphanModel = new ArrayList<>();
 		try (Connection conn = DatabaseConnection.initializeDatabase()){
-			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM lophocphan WHERE ((ngayBD < ?) AND (?<ADDDATE(ngayBD,105)) AND maMH=?)";
+			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM lophocphan WHERE ((ngayBD >?)  AND maMH=?)";
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, date);
-			statement.setString(2, date);
-			statement.setString(3, mh);
+			statement.setDate(1, Date.valueOf(date));
+			statement.setString(2, mh);
 
 
 			ResultSet rs = statement.executeQuery();
@@ -187,14 +187,13 @@ public class LophocphanDaoImpl implements LophocphanDao {
 		return lophocphanModel;	}
 
 	@Override
-	public List<LophocphanModel> findbymsSV(String date, String msSV) {
+	public List<LophocphanModel> findbymsSV(LocalDate date, String msSV) {
 		List<LophocphanModel> lophocphanModel = new ArrayList<>();
 		try (Connection conn = DatabaseConnection.initializeDatabase()){
-			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM (lophocphan INNER JOIN lopthamgia ON lophocphan.id = lopthamgia.lopID) WHERE (((ngayBD < ?) AND (?<ADDDATE(ngayBD,105)) ) AND lopthamgia.msSV=? )";
+			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM (lophocphan INNER JOIN lopthamgia ON lophocphan.id = lopthamgia.lopID) WHERE (ngayBD>? AND lopthamgia.maSV=? )";
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, date);
-			statement.setString(2, date);
-			statement.setString(3, msSV);
+			statement.setDate(1, Date.valueOf(date));
+			statement.setString(2, msSV);
 
 
 
