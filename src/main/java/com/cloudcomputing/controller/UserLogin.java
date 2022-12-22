@@ -68,6 +68,7 @@ public class UserLogin extends HttpServlet {
 
 			AccountService user = new AccountServiceImpl();
 			AccountModel us = user.searchByUsername(username);
+			System.out.println(us);
 
 			if (us != null && us.getAccountID()!=0) {
 				boolean result = (us.getPassword().equals(password));
@@ -88,12 +89,12 @@ public class UserLogin extends HttpServlet {
 				} else {
 					request.setAttribute("hasError", true);
 					request.setAttribute("errorMessage", "Invalid login.");
-					ServletUtils.forward("views/index.jsp", request, response);
+					ServletUtils.forward("/views/index.jsp", request, response);
 				}
 			} else {
 				request.setAttribute("hasError", true);
 				request.setAttribute("errorMessage", "Invalid login.");
-				ServletUtils.forward("views/index.jsp", request, response);
+				ServletUtils.forward("/views/index.jsp", request, response);
 			}
 	}
 }

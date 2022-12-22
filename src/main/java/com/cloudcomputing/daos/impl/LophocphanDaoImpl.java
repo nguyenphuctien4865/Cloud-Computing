@@ -190,7 +190,7 @@ public class LophocphanDaoImpl implements LophocphanDao {
 	public List<LophocphanModel> findbymsSV(String date, String msSV) {
 		List<LophocphanModel> lophocphanModel = new ArrayList<>();
 		try (Connection conn = DatabaseConnection.initializeDatabase()){
-			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM (lophocphan INNER JOIN lopthamgia ON lophocphan.id = lopthamgia=lopID) WHERE ((ngayBD < ?) AND (?<ADDDATE(ngayBD,105))  AND lopthamgia.msSV=? )";
+			String query = "SELECT id, maLop, loai,maMH, maGV, phong, soSV, ngayBD, namHoc, thu, tiet FROM (lophocphan INNER JOIN lopthamgia ON lophocphan.id = lopthamgia.lopID) WHERE (((ngayBD < ?) AND (?<ADDDATE(ngayBD,105)) ) AND lopthamgia.msSV=? )";
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, date);
 			statement.setString(2, date);

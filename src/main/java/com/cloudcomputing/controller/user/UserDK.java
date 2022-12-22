@@ -34,7 +34,7 @@ public class UserDK extends HttpServlet {
 
                     SinhvienService svs = new SinhvienServiceImpl();
                     SinhvienModel s = svs.findByMaSV(us.getUsername());
-
+                    System.out.println(now);
                     MonhocService mh = new MonhocServiceImpl();
                     List<MonhocModel> listMH = mh.findbyCurrentUser(s.getMaKhoa());
 
@@ -50,6 +50,7 @@ public class UserDK extends HttpServlet {
                 case "/Detail":
 
                     var maMH = req.getParameter("maMH");
+                    System.out.println(maMH);
 
                     LophocphanService lhp =new LophocphanServiceImpl();
 
@@ -60,9 +61,9 @@ public class UserDK extends HttpServlet {
                     ServletUtils.forward("/views/user/UserLHP.jsp", req, resp);
                     break;
                 case "/Register":
-
                     var lopID = Integer.parseInt(req.getParameter("maLop"));
-                    HttpSession session1 = req.getSession();
+                    System.out.println(lopID);
+                    System.out.println(us.getUsername());
 
                     LopthamgiaService ltg =new LopthamgiaServiceImpl();
                     LopthamgiaModel newLtg = new LopthamgiaModel(us.getUsername(),lopID,0.0f);

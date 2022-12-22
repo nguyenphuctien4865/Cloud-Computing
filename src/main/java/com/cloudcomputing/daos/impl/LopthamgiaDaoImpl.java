@@ -20,7 +20,7 @@ public class LopthamgiaDaoImpl implements LopthamgiaDao{
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, lopthamgiaModel.getMaSV());
 			statement.setInt(2, lopthamgiaModel.getLopID());
-			statement.setFloat(2, lopthamgiaModel.getDiem());
+			statement.setFloat(3, lopthamgiaModel.getDiem());
 			statement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
