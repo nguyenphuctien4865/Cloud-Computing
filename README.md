@@ -25,7 +25,8 @@
 * Lần 1: https://youtu.be/fRDm40QJTQ8
 * Lần 2: https://youtu.be/t47iAgXKxNI
 
-## File báo cáo: Cloud_Nhom54_Baocao.pdf
+## File báo cáo: 
+* PDF: ./Cloud_Nhom54_Baocao.pdf
 
 ## Mục tiêu và hướng phát triển 
 * Tiếp tục hoàn thiện các chức năng, giao diện còn thiếu. 
