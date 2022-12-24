@@ -26,7 +26,7 @@
 * Lần 2: https://youtu.be/t47iAgXKxNI
 
 ## File báo cáo: 
-* PDF: ./Cloud_Nhom54_Baocao.pdf
+* PDF: [./Cloud_Nhom54_Baocao.pdf](https://github.com/nguyenphuctien4865/Cloud-Computing/blob/c92694561531466763ce1633a636471b9122c0cc/Cloud_Nhom54_Baocao.pdf)
 
 ## Mục tiêu và hướng phát triển 
 * Tiếp tục hoàn thiện các chức năng, giao diện còn thiếu. 
