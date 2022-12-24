@@ -5,6 +5,7 @@ import com.cloudcomputing.daos.GiangvienDao;
 import com.cloudcomputing.models.GiangvienModel;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class GiangvienDaoImpl implements GiangvienDao{
 	@Override
 	public void save(GiangvienModel giangvienModel) {
 		try (Connection connection = DatabaseConnection.initializeDatabase()){
-			String query = "INSERT INTO sinhvien (maSV, hoTen, ngaySinh, maKhoa, accountID) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO giangvien (maGV, hoTen, ngaySinh, maKhoa, loaiGV) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, giangvienModel.getMaGV());
 			statement.setString(2, giangvienModel.getHoTen());
-			statement.setDate(3, giangvienModel.getNgaySinh());
+			statement.setDate(3, new Date(giangvienModel.getNgaySinh().getTime()));
 			statement.setInt(4, giangvienModel.getMaKhoa());
 			statement.setString(5, giangvienModel.getLoaiGV());
 			statement.executeUpdate();
@@ -35,7 +36,7 @@ public class GiangvienDaoImpl implements GiangvienDao{
 			String query = "UPDATE giangvien SET hoTen = ?, ngaySinh = ?, maKhoa = ?, loaiGV = ? WHERE maGV = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, giangvienModel.getHoTen());
-			statement.setDate(2, giangvienModel.getNgaySinh());
+			statement.setDate(2, new Date(giangvienModel.getNgaySinh().getTime()));
 			statement.setInt(3, giangvienModel.getMaKhoa());
 			statement.setString(4, giangvienModel.getLoaiGV());
 			statement.setString(5, giangvienModel.getMaGV());

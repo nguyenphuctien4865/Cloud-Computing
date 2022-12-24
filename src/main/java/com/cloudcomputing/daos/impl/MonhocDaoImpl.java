@@ -2,12 +2,12 @@ package com.cloudcomputing.daos.impl;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.MonhocDao;
-import com.cloudcomputing.models.LophocphanModel;
 import com.cloudcomputing.models.MonhocModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class MonhocDaoImpl implements MonhocDao{
 	@Override
 	public void update(MonhocModel monhocmodel) {
 		try (Connection connection = DatabaseConnection.initializeDatabase()) {
-			String query = "UPDATE sinhvien SET tenMH = ?, loai = ?, soTC = ?, khoaID = ? WHERE maMH = ?";
+			String query = "UPDATE monhoc SET tenMH = ?, loai = ?, soTC = ?, khoaID = ? WHERE maMH = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, monhocmodel.getTenMH());
 			statement.setString(2, monhocmodel.getLoai());
@@ -85,6 +85,27 @@ public class MonhocDaoImpl implements MonhocDao{
 			e.printStackTrace();
 		}
 		return monhocModels;
+	}
+
+	@Override
+	public MonhocModel findByMaMH(String maMH) {
+		MonhocModel monhocModel = new MonhocModel();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query ="SELECT maMH, tenMH, loai, soTC, khoaID FROM monhoc where maMH = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, maMH);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				monhocModel.setMaMH(result.getString(1));
+				monhocModel.setTenMH(result.getString(2));
+				monhocModel.setLoai(result.getString(3));
+				monhocModel.setSoTC(result.getInt(4));
+				monhocModel.setKhoaID(result.getInt(5));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return monhocModel;
 	}
 
 }

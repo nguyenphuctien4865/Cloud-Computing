@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.cloudcomputing.models.SinhvienModel;
 
-import java.util.List;
-
 public interface SinhvienDao {
 	void save (SinhvienModel sinhvienModel);
 	void update (SinhvienModel sinhvienModel);

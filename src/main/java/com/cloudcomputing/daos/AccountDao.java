@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.cloudcomputing.models.AccountModel;
 
-import java.util.List;
-
 public interface AccountDao {
 	void save (AccountModel accountModel);
 	void update (AccountModel accountModel);

@@ -3,9 +3,14 @@ package com.cloudcomputing.daos.impl;
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.DaymonDao;
 import com.cloudcomputing.models.DaymonModel;
+import com.cloudcomputing.models.MonhocModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaymonDaoImpl implements DaymonDao {
 
@@ -33,5 +38,23 @@ public class DaymonDaoImpl implements DaymonDao {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<DaymonModel> findByMaMH(String maMH) {
+		List<DaymonModel> daymon = new ArrayList<>();
+		try(Connection conn = DatabaseConnection.initializeDatabase()){
+			String query = "SELECT maMH, maGV FROM daymon WHERE maMH = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, maMH);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				daymon.add(new DaymonModel(rs.getString(1), rs.getString(2)));	
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return daymon;
 	}
 }

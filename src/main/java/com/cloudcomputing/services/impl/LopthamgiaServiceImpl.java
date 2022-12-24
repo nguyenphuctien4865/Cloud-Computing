@@ -2,7 +2,6 @@ package com.cloudcomputing.services.impl;
 
 import com.cloudcomputing.daos.LopthamgiaDao;
 import com.cloudcomputing.daos.impl.LopthamgiaDaoImpl;
-import com.cloudcomputing.models.LophocphanModel;
 import com.cloudcomputing.models.LopthamgiaModel;
 import com.cloudcomputing.services.LopthamgiaService;
 

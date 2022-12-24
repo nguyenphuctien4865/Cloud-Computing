@@ -1,7 +1,5 @@
 package com.cloudcomputing.controller.user;
 
-import com.cloudcomputing.daos.MonhocDao;
-import com.cloudcomputing.daos.impl.MonhocDaoImpl;
 import com.cloudcomputing.models.AccountModel;
 import com.cloudcomputing.models.KhoaModel;
 import com.cloudcomputing.models.MonhocModel;

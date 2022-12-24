@@ -4,11 +4,14 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <t:admin>
 	<jsp:body>
-		<div class="row" style="padding-top: 104px;">
-			<div class="col-md-12">
+		<div class="container" style="padding-top: 150px; padding-bottom : 50px;">
+			<div class="">
 				<div class="card">
-					<div class="card-header">
-						<h4>Môn học</h4>
+					<div class="card-header row">
+						<h4 class="col-lg-9">Môn học</h4>
+						<a href="${pageContext.request.contextPath }/admin/subject/add"
+							class="btn btn-info text-decoration-none col-lg-3 text-dark fw-bold"
+							style="width: 15%;">Add Môn học</a>
 					</div>
 					<div class = "card-body">
 						<div class="table-responsive">
@@ -31,7 +34,7 @@
 										<td>${monhoc.soTC }</td>
 										<td>${monhoc.khoaID }</td>
 										<td><a class="btn btn-primary"
-													href="">Edit
+													href="${pageContext.request.contextPath }/admin/subject/edit?id=${monhoc.maMH }&khoa=${monhoc.khoaID }">Edit
 														Info</a> <a
 													href=""
 													class="btn btn-danger">Delete</a></td>

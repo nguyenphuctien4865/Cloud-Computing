@@ -24,7 +24,7 @@
 		<div class="container order-lg-0">
 			<a
 				class="navbar-brand d-flex justify-content-between align-items-center"
-				href="">
+				href="${pageContext.request.contextPath }/admin/user">
 				<c:url value="/template/image/logo-spk.png"
 					var="logoSPKT" />
 				<img src="${logoSPKT }" alt="site logo"

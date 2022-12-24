@@ -13,18 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/DKMH/*")
 public class UserDK extends HttpServlet {
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getPathInfo();
         HttpSession session = req.getSession();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate now = LocalDate.now();
         AccountModel us = (AccountModel) session.getAttribute("authUser");
         int [][] tkb = (int[][]) session.getAttribute("tkb");
@@ -92,7 +96,8 @@ public class UserDK extends HttpServlet {
                         ltg.save(newLtg);
                         session.setAttribute("cart", cart);
                     } else {
-                        List<LophocphanModel> cart = (List<LophocphanModel>) session.getAttribute("cart");
+                        @SuppressWarnings("unchecked")
+						List<LophocphanModel> cart = (List<LophocphanModel>) session.getAttribute("cart");
                         int index = isExisting(lopID, cart);
                         if (index == -1) {
 

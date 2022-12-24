@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:admin>
 	<jsp:body>
-		<div class="row" style="padding-top: 104px;">
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<h4>Sinh Viên</h4>
+		<div class="container"
+			style="padding-top: 150px; padding-bottom: 50px">
+			<div class="">
+				<div class="card ">
+					<div class="card-header row">
+						<h4 class="col-lg-9">Sinh Viên</h4>
+						<a href="${pageContext.request.contextPath }/admin/user/add"
+							class="btn btn-info text-decoration-none col-lg-3 text-dark fw-bold"
+							style="width: 15%;">Add Sinh Viên</a>
 					</div>
-					<div class = "card-body">
+					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -23,7 +27,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${user}"  var ="sinhvien">
+									<c:forEach items="${user}" var="sinhvien">
 									<tr>
 										<td>${sinhvien.maSV }</td>
 										<td>${sinhvien.hoTen }</td>
@@ -31,7 +35,7 @@
 										<td>${sinhvien.maKhoa }</td>
 										<td>${sinhvien.accountID }</td>
 										<td><a class="btn btn-primary"
-													href="">Edit
+												href="${pageContext.request.contextPath }/admin/user/edit?maSV=${sinhvien.maSV }&svKhoa=${sinhvien.maKhoa }">Edit
 														Info</a>
 											<a href="" class="btn btn-danger">Delete</a></td>
 									</tr>

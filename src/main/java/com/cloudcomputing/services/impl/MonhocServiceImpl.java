@@ -38,5 +38,10 @@ public class MonhocServiceImpl implements MonhocService{
 		return dao.findbyCurrentUser(khoa);
 	}
 
+	@Override
+	public MonhocModel findByMaMH(String maMH) {
+		return dao.findByMaMH(maMH);
+	}
+
 
 }

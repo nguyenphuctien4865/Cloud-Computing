@@ -9,6 +9,7 @@ public interface MonhocService {
 	void update (MonhocModel monhocmodel);
 	void delete (String maMH);
 	List <MonhocModel> findAll ();
+	MonhocModel findByMaMH (String maMH);
 	List <MonhocModel> findbyCurrentUser (int khoa);
 
 }

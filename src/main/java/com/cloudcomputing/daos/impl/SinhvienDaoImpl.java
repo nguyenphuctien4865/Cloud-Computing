@@ -5,6 +5,7 @@ import com.cloudcomputing.daos.SinhvienDao;
 import com.cloudcomputing.models.SinhvienModel;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class SinhvienDaoImpl implements SinhvienDao{
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, sinhvienModel.getMaSV());
 			statement.setString(2, sinhvienModel.getHoTen());
-			statement.setDate(3, sinhvienModel.getNgaySinh());
+			statement.setDate(3, new Date(sinhvienModel.getNgaySinh().getTime()) );
 			statement.setInt(4, sinhvienModel.getMaKhoa());
 			statement.setInt(5, sinhvienModel.getAccountID());
 			statement.executeUpdate();
@@ -36,7 +37,7 @@ public class SinhvienDaoImpl implements SinhvienDao{
 			String query = "UPDATE sinhvien SET hoTen = ?, ngaySinh = ?, maKhoa = ?, accountID = ? WHERE maSV = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, sinhvienModel.getHoTen());
-			statement.setDate(2, sinhvienModel.getNgaySinh());
+			statement.setDate(2, new Date(sinhvienModel.getNgaySinh().getTime()) );
 			statement.setInt(3, sinhvienModel.getMaKhoa());
 			statement.setInt(4, sinhvienModel.getAccountID());
 			statement.setString(5, sinhvienModel.getMaSV());
@@ -82,7 +83,6 @@ public class SinhvienDaoImpl implements SinhvienDao{
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				sinhvien.add(new SinhvienModel(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getInt(4), rs.getInt(5)));
-				
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

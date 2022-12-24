@@ -17,36 +17,36 @@
 			<div class="card">
 				<div class="card-header " style="padding-top: 130px;">
 					<h4>
-						Edit Sinh Viên
+						Edit Giảng Viên
 					</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<form method="post"
-								action="${pageContext.request.contextPath }/admin/user/edit?maSV=${user.maSV}">
+								action="${pageContext.request.contextPath }/admin/teacher/edit">
 							<div class="mb-3">
-								<label for="hoTen">user</label><input type="text"
-										class="form-control" id="maSV" name="maSV" required="required"
-										value="${user.maSV }" readonly="readonly">
+								<label for="maGV">Mã Giảng Viên</label><input type="text"
+										class="form-control" id="maGV" name="maGV" required="required"
+										value="${gvEdit.maGV }" readonly="readonly">
 							</div>
 							<div class="mb-3">
-								<label for="hoTen">Họ Tên SV</label><input type="text"
+								<label for="hoTen">Họ Tên GV</label><input type="text"
 										class="form-control" id="hoTen" name="hoTen"
-										required="required" value="${user.hoTen }">
+										required="required" value="${gvEdit.hoTen }">
 							</div>
 			
 							<div class="mb-3">
-								<label for="hoTen">Ngày Sinh</label><input type="date"
+								<label for="ngaySinh">Ngày Sinh</label><input type="date"
 										class="form-control" id="ngaySinh" name="ngaySinh"
-										required="required" value="${user.ngaySinh }">
+										required="required" value="${gvEdit.ngaySinh }">
 							</div>
 							<div class="mb-3">
 								<div class="mb-3">
 							<label for="maKhoa">Mã Khoa</label>
 								<select class="form-select" aria-label="Default select example"
 											id="maKhoa" name="maKhoa">
-  									<option selected value="${userKhoa.khoaID }"
-												class="form-control" id="maKhoa" name="maKhoa">${userKhoa.tenKhoa }</option>
+  									<option selected value="${teacherKhoa.khoaID }"
+												class="form-control" id="maKhoa" name="maKhoa">${teacherKhoa.tenKhoa }</option>
   									<c:forEach items="${Khoa }" var="Khoa">
   										<option value="${Khoa.khoaID }" class="form-control"
 													id="maKhoa" name="maKhoa">${Khoa.tenKhoa }</option>
@@ -56,9 +56,13 @@
 								
 							</div>
 							<div class="mb-3">
-								<label for="hoTen">Account ID</label><input type="text"
-										class="form-control" id="accountID" name="accountID"
-										required="required" value="${user.accountID }" readonly="readonly">
+								<label for="hoTen">Loại Giảng Viên</label>
+								<select class="form-select" aria-label="Default select example"
+										id="loaiGV" name="loaiGV">
+										<option selected value="${gvEdit.loaiGV }">${gvEdit.loaiGV }</option>
+										<option value="CH">CH</option>
+										<option value="TG">TG</option>
+								</select>
 							</div>
 							<div class="mb-3">
 								<button type="submit" class="btn btn-primary">Edit</button>
@@ -66,7 +70,7 @@
 						</form>
 						<div class="col md-4 pt-2">
 						<a class="btn btn-outline-dark"
-									href="${pageContext.request.contextPath }/admin/user">Back</a>
+									href="${pageContext.request.contextPath }/admin/teacher">Back</a>
 					</div>
 					</div>
 				</div>

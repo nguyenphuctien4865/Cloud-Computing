@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.cloudcomputing.models.GiangvienModel;
 
-import java.util.List;
-
 public interface GiangvienDao {
 	void save (GiangvienModel giangvienModel);
 	void update (GiangvienModel giangvienModel);

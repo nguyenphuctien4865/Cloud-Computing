@@ -17,51 +17,50 @@
 			<div class="card">
 				<div class="card-header " style="padding-top: 130px;">
 					<h4>
-						Edit Sinh Viên
+						Add Sinh Viên
 					</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<form method="post"
-								action="${pageContext.request.contextPath }/admin/user/edit?maSV=${user.maSV}">
+								action="${pageContext.request.contextPath }/admin/user/add">
 							<div class="mb-3">
-								<label for="hoTen">user</label><input type="text"
+								<label for="hoTen">Mã SV</label><input type="text"
 										class="form-control" id="maSV" name="maSV" required="required"
-										value="${user.maSV }" readonly="readonly">
+										value="">
+							</div>
+							<div class="mb-3">
+								<label for="password">Password</label><input type="password"
+										class="form-control" id="password" name="password"
+										required="required">
+							</div>
+							<div class="mb-3">
+								<label for="type">Type</label><input type="text"
+										class="form-control" id="type" name="type" required="required"
+										readonly="readonly" value="student"> 
 							</div>
 							<div class="mb-3">
 								<label for="hoTen">Họ Tên SV</label><input type="text"
 										class="form-control" id="hoTen" name="hoTen"
-										required="required" value="${user.hoTen }">
+										required="required" value="">
 							</div>
 			
 							<div class="mb-3">
 								<label for="hoTen">Ngày Sinh</label><input type="date"
 										class="form-control" id="ngaySinh" name="ngaySinh"
-										required="required" value="${user.ngaySinh }">
+										required="required" value="">
 							</div>
 							<div class="mb-3">
-								<div class="mb-3">
 							<label for="maKhoa">Mã Khoa</label>
-								<select class="form-select" aria-label="Default select example"
-											id="maKhoa" name="maKhoa">
-  									<option selected value="${userKhoa.khoaID }"
-												class="form-control" id="maKhoa" name="maKhoa">${userKhoa.tenKhoa }</option>
+								<select class="form-select" aria-label="Default select example" id="maKhoa" name="maKhoa">
+  									<option selected>Chọn mã khoa</option>
   									<c:forEach items="${Khoa }" var="Khoa">
-  										<option value="${Khoa.khoaID }" class="form-control"
-													id="maKhoa" name="maKhoa">${Khoa.tenKhoa }</option>
+  										<option value="${Khoa.khoaID }">${Khoa.tenKhoa }</option>
   									</c:forEach>
 								</select>
 							</div>
-								
-							</div>
 							<div class="mb-3">
-								<label for="hoTen">Account ID</label><input type="text"
-										class="form-control" id="accountID" name="accountID"
-										required="required" value="${user.accountID }" readonly="readonly">
-							</div>
-							<div class="mb-3">
-								<button type="submit" class="btn btn-primary">Edit</button>
+								<button type="submit" class="btn btn-primary">Add</button>
 							</div>
 						</form>
 						<div class="col md-4 pt-2">

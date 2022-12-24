@@ -2,7 +2,6 @@ package com.cloudcomputing.daos.impl;
 
 import com.cloudcomputing.connection.DatabaseConnection;
 import com.cloudcomputing.daos.LopthamgiaDao;
-import com.cloudcomputing.models.LophocphanModel;
 import com.cloudcomputing.models.LopthamgiaModel;
 
 import java.sql.Connection;
